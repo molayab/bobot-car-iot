@@ -4,7 +4,7 @@
 
 class Engine 
 {
-    public:
+public:
     /**
      * Configures H-Bridge hardware connections for Engine class 
      * usage. It requires 2 PWM pins for speed and 4 (2 each motor)
@@ -41,7 +41,7 @@ class Engine
     void set_power(motor_descriptor_r motor, int power);
     void stop();
     
-    private:
+private:
     configuration_t config;
     void set_pwm_value(uint8_t pin, int value);
 };

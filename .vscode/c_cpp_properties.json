@@ -10,6 +10,7 @@
             "includePath": [
                 "/home/molayab/Workspace/bobot-car-iot/include",
                 "/home/molayab/Workspace/bobot-car-iot/src",
+                "/home/molayab/Workspace/bobot-car-iot/.pio/libdeps/uno/StandardCplusplus",
                 "/home/molayab/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "/home/molayab/.platformio/packages/framework-arduino-avr/variants/standard",
                 "/home/molayab/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
@@ -24,6 +25,7 @@
                 "path": [
                     "/home/molayab/Workspace/bobot-car-iot/include",
                     "/home/molayab/Workspace/bobot-car-iot/src",
+                    "/home/molayab/Workspace/bobot-car-iot/.pio/libdeps/uno/StandardCplusplus",
                     "/home/molayab/.platformio/packages/framework-arduino-avr/cores/arduino",
                     "/home/molayab/.platformio/packages/framework-arduino-avr/variants/standard",
                     "/home/molayab/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
