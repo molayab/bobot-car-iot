@@ -7,11 +7,11 @@ Bobot::Bobot() {
 }
 
 Bobot::~Bobot() {
-    // delete shell;
+    delete shell;
     delete parser;
     delete buffer;
 }
 
 void Bobot::received_byte(uint8_t byte) {
-    // buffer->writeByte(byte);
+    buffer->writeByte(byte);
 }
