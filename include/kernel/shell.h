@@ -1,6 +1,7 @@
 #ifndef shell_h
 #define shell_h
-#include "kernel.h"
+#include "../modules/communication/buffer.h"
+#include "../modules/communication/parser.h"
 
 class Interpreter: public Communication::BufferDelegate {
     void execute(Communication::frame_t frame);

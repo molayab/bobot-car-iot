@@ -6,7 +6,7 @@
 namespace Communication {
     class Parser;
     class BufferDelegate {
-        virtual void did_receive_frame(frame_type_t frame) = 0;
+        virtual void did_receive_frame(frame_t frame) = 0;
     };
     class Buffer {
     public:
@@ -19,10 +19,7 @@ namespace Communication {
         uint16_t frame_size;
         uint8_t frame_type;
     };
-    class Interpreter: public BufferDelegate {
-        void execute(frame_type_t frame);
-        void did_receive_frame(frame_type_t frame);
-    };
+    
 }
 
 #endif
