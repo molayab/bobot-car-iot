@@ -11,6 +11,8 @@ class Engine
      * for control. When control pin is set LOW - HIGH motor rotates
      * on one direction, inverting the logic (HIGH - LOW) motor will
      * rotate otherwise. For H-H and L-L motor stops.
+     * 
+     * Left => M1 ; Right => M2 (Please check the correct pin wiring).
      */
     struct configuration_t
     {
@@ -26,16 +28,22 @@ class Engine
      */
     enum motor_descriptor_r { LEFT = 0, RIGHT };
     enum direction_t { FORWARD = 0, BACKWARD };
-    
 
     Engine(configuration_t config);
+    /**
+     * Sets the direction of the selected motor.
+     * Logic table for motor control, check wiring.
+     * [ --  ctr1 ctr2  | R       ]
+     * [ Mx   1    0    | FORWARD ]
+     * [ Mx   0    1    | BACKWAD ]
+     */
     void set_direction(motor_descriptor_r motor, direction_t direction);
     void set_power(motor_descriptor_r motor, int power);
     void stop();
     
     private:
-    void Engine::set_pwm_value(uint8_t pin, int value);
     configuration_t config;
+    void set_pwm_value(uint8_t pin, int value);
 };
 
 #endif

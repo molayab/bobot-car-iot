@@ -11,7 +11,22 @@ Engine::Engine(configuration_t config): config(config) {
 }
 
 void Engine::set_direction(motor_descriptor_r motor, direction_t direction) {
-
+    /**
+     * Logic table for motor control, check wiring.
+     * [ --  ctr1 ctr2  | R       ]
+     * [ Mx   1    0    | FORWARD ]
+     * [ Mx   0    1    | BACKWAD ]
+     */
+    switch (motor) {
+        case LEFT:
+            digitalWrite(config.m1_ctr1_pin, (direction == FORWARD) ? 1 : 0);
+            digitalWrite(config.m1_ctr2_pin, (direction == BACKWARD) ? 1 : 0);
+            break;
+        case RIGHT:
+            digitalWrite(config.m2_ctr1_pin, (direction == FORWARD) ? 1 : 0);
+            digitalWrite(config.m2_ctr2_pin, (direction == BACKWARD) ? 1 : 0);
+            break;
+    }
 }
 
 void Engine::set_power(motor_descriptor_r motor, int power) {
