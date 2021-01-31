@@ -12,13 +12,13 @@
  * [  1 byte   |          1 byte       |        1 byte       ]
  */
 class DirectionCommand: public Command {
-    public:
+public:
     DirectionCommand(
         Engine* engine, 
         Engine::motor_descriptor_r motor, 
         Engine::direction_t direction);
 
-    private:
+private:
     Engine* engine;
     Engine::direction_t direction;
     Engine::motor_descriptor_r motor;

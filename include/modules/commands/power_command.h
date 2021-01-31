@@ -12,10 +12,10 @@
  * [  1 byte   |          1 byte       |      1 byte     ]
  */
 class PowerCommand: public Command {
-    public:
+public:
     PowerCommand(Engine* engine, Engine::motor_descriptor_r motor, uint8_t power);
 
-    private:
+private:
     Engine* engine;
     uint8_t power;
     Engine::motor_descriptor_r motor;
