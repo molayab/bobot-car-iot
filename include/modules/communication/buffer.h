@@ -1,25 +1,19 @@
 #ifndef buffer_h
 #define buffer_h
 #include <vector>
-#include "communication.h"
 
 namespace Communication {
-    class Parser;
-    class BufferDelegate {
-        virtual void did_receive_frame(frame_t frame) = 0;
-    };
     class Buffer {
     public:
-        Buffer(Parser* parser, BufferDelegate* delegate);
+        Buffer();
         void writeByte(uint8_t byte);
-    
+        uint8_t readByte();
+        size_t count();
+        uint8_t* unsafe_readAll();
+        void clear();
     private:
-        std::vector<uint8_t> buffer;
-        bool is_recording;
-        uint16_t frame_size;
-        uint8_t frame_type;
+        std::vector<uint8_t> context;
     };
-    
 }
 
 #endif

@@ -5,6 +5,7 @@
 #endif
 #include <Arduino.h>
 #include <ArduinoSTL.h>
+#include "buffer.h"
 
 namespace Communication {
     enum frame_type_t { CONTROL = 0, STREAM };
@@ -12,6 +13,29 @@ namespace Communication {
         frame_type_t type;
         uint16_t data_size;
         void* data;
+    };
+    class SenderProvider {
+    public:
+        virtual void send(uint8_t* bytes, size_t size) = 0;
+    };
+    class ReceiverProvider {
+    public:
+        virtual void receive(frame_t frame) = 0;
+    };
+    class Handler {
+    public:
+        Handler();
+        ~Handler();
+        void receive(uint8_t byte);
+        void send(uint8_t* bytes, size_t size);
+        void set_receiver(ReceiverProvider* receiver_provider);
+    private:
+        Buffer* buffer;
+        SenderProvider* sender_provider;
+        ReceiverProvider* receiver_provider;
+        bool is_recording;
+        uint16_t frame_size;
+        uint8_t frame_type;
     };
 }
 
