@@ -18,12 +18,12 @@ public:
     void sync(); // Given CPU time to do important stuff.
     /// Schedules a task in order to be performed each CPU cycle, when available.
     void schedule_task(BobotTask* task);
-    void set_parser(Parser* parser);
+    void set_shell(ShellParser* shell);
     void register_engine(Engine::configuration_t config);
 private:
     Communication::Handler* handler;
     BobotTask* task;
-    Parser* parser;
+    ShellParser* shell;
     Engine* engine;
     void receive(Communication::frame_t frame);
 };
