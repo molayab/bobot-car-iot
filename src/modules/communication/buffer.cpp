@@ -10,7 +10,9 @@ void Buffer::writeByte(uint8_t byte) {
 }
 
 uint8_t Buffer::readByte() {
-    return *context.erase(context.begin() + 1);
+    auto value = context[0];
+    context.erase(context.begin());
+    return value;
 }
 
 size_t Buffer::count() {

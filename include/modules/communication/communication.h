@@ -12,7 +12,7 @@ namespace Communication {
     struct frame_t {
         frame_type_t type;
         uint16_t data_size;
-        void* data;
+        uint8_t* data;
     };
     class SenderProvider {
     public:
@@ -36,6 +36,7 @@ namespace Communication {
         bool is_recording;
         uint16_t frame_size;
         uint8_t frame_type;
+        void reset();
     };
 }
 

@@ -2,9 +2,10 @@
 using namespace Communication;
 
 Handler::Handler() {
-    this->buffer = new Buffer();
-    this->frame_size = 0;
-    this->frame_type = 0;
+    buffer = new Buffer();
+    frame_size = 0;
+    frame_type = 0;
+    is_recording = false;
 }
 
 Handler::~Handler() {
@@ -23,18 +24,26 @@ void Handler::receive(uint8_t byte) {
         buffer->writeByte(byte);
         if (buffer->count() == 3 && 0 == frame_type && 0 == frame_size) {
             // We got all frame descriptors, now fill those.
-            this->frame_type = buffer->readByte();
-            uint8_t size = (buffer->readByte() << 8) | buffer->readByte(); // MSB ??
-            this->frame_size = size;
+            frame_type = buffer->readByte();
+            // MSB FIRST
+            uint16_t size = (uint16_t)(buffer->readByte() << 8) | buffer->readByte();
+            frame_size = size;
             return;
-        }
-        if ((uint16_t)buffer->count() - 3 >= this->frame_size) {
-            is_recording = false;
+        } else if ((uint16_t)buffer->count() >= frame_size && frame_size > 0) {
             frame_t frame;
-            frame.type = (frame_type_t) this->frame_type;
-            frame.data_size = this->frame_size;
+            frame.type = (frame_type_t) frame_type;
+            frame.data_size = frame_size;
             frame.data = buffer->unsafe_readAll();
             receiver_provider->receive(frame);
+            // TODO: send back an ack or nack.
+            reset();
         }
     }
+}
+
+void Handler::reset() {
+    buffer->clear();
+    is_recording = false;
+    frame_size = 0;
+    frame_type = 0;
 }

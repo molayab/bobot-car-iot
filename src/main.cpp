@@ -4,7 +4,7 @@ Bobot* bobot;
 
 class ExampleTask: public BobotTask {
   void run() {
-    Serial.println("This is a test");
+    //Serial.println("This is a test");
   }
 };
 
