@@ -38,12 +38,12 @@ public:
      * [ Mx   0    1    | BACKWAD ]
      */
     void set_direction(motor_descriptor_r motor, direction_t direction);
-    void set_power(motor_descriptor_r motor, int power);
+    void set_power(motor_descriptor_r motor, uint8_t power);
     void stop();
     
 private:
     configuration_t config;
-    void set_pwm_value(uint8_t pin, int value);
+    void set_pwm_value(uint8_t pin, uint8_t value);
 };
 
 #endif

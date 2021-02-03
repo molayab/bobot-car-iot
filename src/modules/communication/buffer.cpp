@@ -5,11 +5,11 @@ Buffer::Buffer() {
     context = std::vector<uint8_t>();
 }
 
-void Buffer::writeByte(uint8_t byte) {
+void Buffer::write_byte(uint8_t byte) {
     context.push_back(byte);
 }
 
-uint8_t Buffer::readByte() {
+uint8_t Buffer::read_byte() {
     auto value = context[0];
     context.erase(context.begin());
     return value;
@@ -19,7 +19,7 @@ size_t Buffer::count() {
     return context.size();
 }
 
-uint8_t* Buffer::unsafe_readAll() {
+uint8_t* Buffer::unsafe_read_all() {
     /**
      * This pointer is only valid as long as the vector is not reallocated. 
      * Reallocation happens automatically if you insert more elements than will fit 

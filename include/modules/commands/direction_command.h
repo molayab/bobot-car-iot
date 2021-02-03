@@ -1,7 +1,7 @@
 #ifndef direction_command_h
 #define direction_command_h
 #include "command.h"
-#include "../engine/engine.h"
+#include "modules/engine/engine.h"
 
 /**
  * Direction Command :: command id (0x02)
@@ -17,6 +17,7 @@ public:
         Engine* engine, 
         Engine::motor_descriptor_r motor, 
         Engine::direction_t direction);
+    void execute();
 
 private:
     Engine* engine;

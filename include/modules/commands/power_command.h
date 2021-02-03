@@ -1,7 +1,7 @@
 #ifndef power_command_h
 #define power_command_h
 #include "command.h"
-#include "../engine/engine.h"
+#include "modules/engine/engine.h"
 
 /**
  * Power Command :: command id (0x01)
@@ -14,6 +14,7 @@
 class PowerCommand: public Command {
 public:
     PowerCommand(Engine* engine, Engine::motor_descriptor_r motor, uint8_t power);
+    void execute();
 
 private:
     Engine* engine;

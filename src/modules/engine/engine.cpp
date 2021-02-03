@@ -29,7 +29,7 @@ void Engine::set_direction(motor_descriptor_r motor, direction_t direction) {
     }
 }
 
-void Engine::set_power(motor_descriptor_r motor, int power) {
+void Engine::set_power(motor_descriptor_r motor, uint8_t power) {
     switch (motor) {
         case LEFT:
             set_pwm_value(config.m1_ctr1_pin, power);
@@ -40,7 +40,7 @@ void Engine::set_power(motor_descriptor_r motor, int power) {
     }
 }
 
-void Engine::set_pwm_value(uint8_t pin, int value) {
+void Engine::set_pwm_value(uint8_t pin, uint8_t value) {
     analogWrite(pin, value);
 }
 

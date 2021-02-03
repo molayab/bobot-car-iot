@@ -21,19 +21,19 @@ void Handler::receive(uint8_t byte) {
         is_recording = true;
         return;
     } else if (is_recording) {
-        buffer->writeByte(byte);
+        buffer->write_byte(byte);
         if (buffer->count() == 3 && 0 == frame_type && 0 == frame_size) {
             // We got all frame descriptors, now fill those.
-            frame_type = buffer->readByte();
+            frame_type = buffer->read_byte();
             // MSB FIRST
-            uint16_t size = (uint16_t)(buffer->readByte() << 8) | buffer->readByte();
+            uint16_t size = (uint16_t)(buffer->read_byte() << 8) | buffer->read_byte();
             frame_size = size;
             return;
         } else if ((uint16_t)buffer->count() >= frame_size && frame_size > 0) {
             frame_t frame;
             frame.type = (frame_type_t) frame_type;
             frame.data_size = frame_size;
-            frame.data = buffer->unsafe_readAll();
+            frame.data = buffer->unsafe_read_all();
             receiver_provider->receive(frame);
             // TODO: send back an ack or nack.
             reset();
