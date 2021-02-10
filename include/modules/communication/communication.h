@@ -4,7 +4,9 @@
 #define COMMUNICATION_FRAME_FLAG 0xDF
 #endif
 #include <Arduino.h>
+#ifdef CPPSTL_WRAPPER
 #include <ArduinoSTL.h>
+#endif
 #include "buffer.h"
 
 namespace Communication {
