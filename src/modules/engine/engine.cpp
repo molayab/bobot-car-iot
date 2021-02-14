@@ -32,10 +32,10 @@ void Engine::set_direction(motor_descriptor_r motor, direction_t direction) {
 void Engine::set_power(motor_descriptor_r motor, uint8_t power) {
     switch (motor) {
         case LEFT:
-            set_pwm_value(config.m1_ctr1_pin, power);
+            set_pwm_value(config.m1_pwm_pin, power);
             break;
         case RIGHT:
-            set_pwm_value(config.m2_ctr1_pin, power);
+            set_pwm_value(config.m2_pwm_pin, power);
             break;
     }
 }

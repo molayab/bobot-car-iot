@@ -9,7 +9,7 @@ class ExampleTask: public BobotTask {
 };
 
 void setup() {
-  Serial.begin(9600);
+  Serial2.begin(9600);
   auto exampleTask = new ExampleTask();
   bobot = new Bobot();
   /**
@@ -25,15 +25,15 @@ void setup() {
    * pin 8 => m2
    * pin 7 => m2
    */
-  bobot->register_engine((Engine::configuration_t){6, 5, 13, 12, 8, 7});
+  bobot->register_engine((Engine::configuration_t){2, 3, 22, 21, 23, 20});
   // Register a new shell that exposes API that controls this device.
   bobot->set_shell(new Shell());
 }
 
 void loop() {
   // Do first comm.
-  while (Serial.available() > 0) {
-      bobot->received_byte((uint8_t)Serial.read());
+  while (Serial2.available() > 0) {
+      bobot->received_byte((uint8_t)Serial2.read());
   }
   // Give some time to the opt task, if it's present.
   bobot->sync();
